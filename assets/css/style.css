@@ -1,0 +1,145 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, 
+cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, 
+ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, 
+embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*
+ * Fonts
+ */
+@font-face {
+    font-family: 'Bebas';
+    src: url('fonts/BebasNeue-webfont.eot');
+    src: url('fonts/BebasNeue-webfontt.eot?#iefix') format('embedded-opentype'),
+         url('fonts/BebasNeue-webfont.woff') format('woff'),
+         url('fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('fonts/BebasNeue-webfont.svg#webfontAGQ6uv7S') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+ * Main stuff
+ */
+html {
+    font-family: Bebas,Arial,sans-serif;
+    background-image: url('gfx/bg.jpg');
+    background-size:cover
+}
+div {
+    position: relative;
+}
+#container {
+    width: 850px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 525px;
+}
+
+/*
+ * Spinner
+ */
+.spinner {
+    width: 830px;
+    padding: 10px;
+    margin: 0 auto;
+    height: 130px;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px 4px;
+    margin-bottom: 25px;
+    display: none;
+}
+.spinner-holder {
+    width: 830px;
+    overflow: hidden;
+    height: 130px;
+}
+.spinner ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transition: all 8s ease 0s;
+    width: 1000000px;
+}
+.spinner ul li {
+    float: left;
+    height: 150px;
+    width: 140px;
+}
+.list-container {
+    width: 110px;
+    height: 110px;
+    padding: 10px;
+    background-color: #607386;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 4px 4px;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+}
+
+/*
+ * Line
+ */
+.line {
+    width: 4px;
+    height: 150px;
+    position: absolute;
+    left: 50%;
+    margin-left: -2px;
+    top: 0px;
+    z-index: 100;
+}
+.line-inner1 {
+    height: 150px;
+    width: 3px;
+    background-color: rgba(255, 0, 0, 0.75);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.line-inner2 {
+    height: 150px;
+    width: 1px;
+    background-color: rgba(224, 41, 41, 0.75);
+    position: absolute;
+    left: 3px;
+    top: 0px;
+}

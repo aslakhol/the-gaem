@@ -5,62 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The gaem</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 <div id="container">
-    <div id="line"></div>
-    <div id="wrapper">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="assets/js/underscore.min.js"></script>
+<script src="assets/js/gaem/gaem.js"></script>
+<script src="assets/js/gaem/gaem.utilities.js"></script>
+<script src="assets/js/gaem/gaem.fetchdata.js"></script>
+
+<script type="text/template" class="template-spinner">
+<div class="spinner" id="spinner_<%- rc.id %>">
+    <div class="line">
+        <div class="line-inner1"></div>
+        <div class="line-inner2"></div>
+    </div>
+    <div class="spinner-holder">
         <ul>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
-            <li><div class="list-container">Lorem ipsum</div></li>
+            <% _.each(rc.names,function(item) { %>
+            <li>
+                <div class="list-container">
+                    <%- item.name %>
+                </div>
+            </li>
+            <% }); %>
         </ul>
     </div>
 </div>
-
-
-<input type="button" id="start" value="Start!" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="script.js"></script>
+</script>
 </body>
 </html>
