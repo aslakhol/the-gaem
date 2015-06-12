@@ -16,8 +16,8 @@ var Gaem = (function (module) {
             }
             
             return text;
-        },
-    }
+        }
+    };
     
     /*
      * Return module with sub module functions

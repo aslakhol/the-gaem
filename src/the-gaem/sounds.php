@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 $sounds = [];
 
 // Read sounds directory
-if ($handle = opendir(dirname(__FILE__) . '/sounds/')) {
+if ($handle = opendir(dirname(dirname(dirname(__FILE__))) . '/web/sounds/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != '.' && $entry != '..') {
             $sounds[] = 'sounds/' . $entry;

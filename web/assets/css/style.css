@@ -36,7 +36,7 @@ table {
 @font-face {
     font-family: 'Bebas';
     src: url('fonts/BebasNeue-webfont.eot');
-    src: url('fonts/BebasNeue-webfontt.eot?#iefix') format('embedded-opentype'),
+    src: url('fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
          url('fonts/BebasNeue-webfont.woff') format('woff'),
          url('fonts/BebasNeue-webfont.ttf') format('truetype'),
          url('fonts/BebasNeue-webfont.svg#webfontAGQ6uv7S') format('svg');

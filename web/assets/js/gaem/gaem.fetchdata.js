@@ -9,7 +9,7 @@ var Gaem = (function (module) {
             setInterval(function () {
                 $.ajax({
                     cache: false,
-                    url: 'settings.php',
+                    url: 'settings',
                     success: function(json) {
                         Gaem.updateSettings(json);
                     }
@@ -19,13 +19,13 @@ var Gaem = (function (module) {
             // Fetch sounds
             $.ajax({
                 cache: false,
-                url: 'sounds.php',
+                url: 'sounds',
                 success: function(json) {
                     Gaem.setSounds(json);
                 }
             });
-        },
-    }
+        }
+    };
     
     /*
      * Return module with sub module functions
