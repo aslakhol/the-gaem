@@ -1,33 +1,33 @@
 <?php
+// Set content type
 header('Content-Type: application/json');
 
-$settings = [
-    'state' => true,
-    'min' => 60,
-    'max' => 120,
-    'double' => 10,
-    'tripple' => 10,
-    'names' => [
-        'Terri Ortega',
-        'Genevieve Gordon',
-        'Janet Figueroa',
-        'Tim White',
-        'Michele Murray',
-        'Adrienne Caldwell',
-        'Lyle Ward',
-        'Velma Berry',
-        'Sergio Curry',
-        'Antonia Lane',
-        'Ted Stewart',
-        'Joey Williamson',
-        'Harry Bridges',
-        'Geoffrey Douglas',
-        'Max Morrison',
-        'Joshua Mullins',
-        'Thelma Kennedy'
-    ], 
-];
+// Array for settings
+$settings = [];
+$settings_file = dirname(dirname(dirname(__FILE__))) . '/settings/settings.json';
 
-// Echo
+// Check if settings file exists
+
+if (file_exists($settings_file)) {
+    // Get settings
+    $settings = json_decode(file_get_contents($settings_file), true);
+}
+else {
+    // Set default settings
+    $settings = [
+        'state' => false,
+        'sounds' => true,
+        'min' => 60,
+        'max' => 120,
+        'double' => 10,
+        'triple' => 10,
+        'names' => [],
+    ];
+
+    // Save settings
+    file_put_contents($settings_file, json_encode($settings));
+}
+
+
+// Return JSON
 echo json_encode($settings);
-?>

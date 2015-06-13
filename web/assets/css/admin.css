@@ -1,0 +1,51 @@
+/*
+ * Various
+ */
+h1 {
+    font-size: 25px;
+}
+h2 {
+    font-size: 16px;
+}
+.row {
+    padding-bottom: 10px;
+}
+
+/*
+ * Loading
+ */
+#loading {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px 4px;
+    padding: 20px;
+    text-align: center;
+}
+
+/*
+ * Settings
+ */
+#settings {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px 4px;
+    padding: 20px;
+}
+#settings-header {
+    text-align: center;
+    padding-bottom: 25px;
+}
+.admin-checkbox-label {
+    line-height: 32px;
+}
+
+/*
+ * Slider
+ */
+#double,
+#triple,
+#minmax {
+    width: 100%;
+}
+.tooltip-inner {
+    max-width: none;
+}

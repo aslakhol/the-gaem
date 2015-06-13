@@ -17,5 +17,5 @@ if ($handle = opendir(dirname(dirname(dirname(__FILE__))) . '/web/sounds/')) {
     closedir($handle);
 }
 
+// Return JSON
 echo json_encode($sounds);
-?>

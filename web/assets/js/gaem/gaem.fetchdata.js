@@ -10,9 +10,7 @@ var Gaem = (function (module) {
                 $.ajax({
                     cache: false,
                     url: 'settings',
-                    success: function(json) {
-                        Gaem.updateSettings(json);
-                    }
+                    success: Gaem.updateSettings
                 });
             }, 15000);
             
@@ -20,9 +18,7 @@ var Gaem = (function (module) {
             $.ajax({
                 cache: false,
                 url: 'sounds',
-                success: function(json) {
-                    Gaem.setSounds(json);
-                }
+                success: Gaem.setSounds
             });
         }
     };

@@ -16,6 +16,16 @@ var Gaem = (function (module) {
             }
             
             return text;
+        },
+        secToPretty: function (val) {
+            if (val < 60) {
+                return val + ' sec';
+            }
+            else {
+                var min = Math.floor(val / 60);
+                var sec = val - (60 * min);
+                return min + ' min' + ((sec == 0) ? '' : (' and ' + sec + ' sec'))
+            }
         }
     };
     

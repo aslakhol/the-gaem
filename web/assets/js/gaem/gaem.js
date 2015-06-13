@@ -106,7 +106,7 @@ var Gaem = (function (module) {
         // Append template to container
         $('#container').append(template({'names': names, 'id': id}));
         
-        // Calulcate movement
+        // Calculate movement
         var movement = (num * 140) - 70;
         
         // Calculate random movement
@@ -167,9 +167,9 @@ var Gaem = (function (module) {
         
         var spins = 1;
         
-        // Check for tripple
-        if (Gaem.utilities.randomInt(0, 100) <= settings.tripple) {
-            console.log('Tipple spin!');
+        // Check for triple
+        if (Gaem.utilities.randomInt(0, 100) <= settings.triple) {
+            console.log('Triple spin!');
             spins = 3;
         }
         
@@ -245,8 +245,3 @@ var Gaem = (function (module) {
      */
     return module;
 })(Gaem || {});
-
-
-$(document).ready(function () {
-    Gaem.init();
-});

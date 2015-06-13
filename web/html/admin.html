@@ -5,10 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The gaem :: Admin</title>
+    <link rel="stylesheet" href="assets/css/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/libs/bootstrap-switch.min.css" />
+    <link rel="stylesheet" href="assets/css/libs/bootstrap-slider.min.css" />
     <link rel="stylesheet" href="assets/css/common.css" />
     <link rel="stylesheet" href="assets/css/admin.css" />
 </head>
 <body>
+<div id="container">
+    <div id="loading">
+        <h1>Loading current settings</h1>
+    </div>
+    <div id="settings">
+        <div id="settings-header">
+            <h1>Settings</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4 admin-checkbox-label">
+                <h2>Gaem status</h2>
+            </div>
+            <div class="col-md-8">
+                <input type="checkbox" id="state">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 admin-checkbox-label">
+                <h2>Play sounds</h2>
+            </div>
+            <div class="col-md-8">
+                <input type="checkbox" id="sounds">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 admin-checkbox-label">
+                <h2>Chance for double spin</h2>
+            </div>
+            <div class="col-md-8">
+                <input id="double" data-slider-id='double' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 admin-checkbox-label">
+                <h2>Chance for triple spin</h2>
+            </div>
+            <div class="col-md-8">
+                <input id="triple" data-slider-id='double' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 admin-checkbox-label">
+                <h2>Min / Max waiting time for spin</h2>
+            </div>
+            <div class="col-md-8">
+                <input id="minmax" data-slider-id='minmax' type="text" data-slider-min="30" data-slider-max="600" data-slider-step="1" />
+            </div>
+        </div>
+    </div>
+</div>
 <script src="assets/js/libs/jquery-2.1.4.min.js"></script>
+<script src="assets/js/libs/bootstrap.min.js"></script>
+<script src="assets/js/libs/bootstrap-switch.min.js"></script>
+<script src="assets/js/libs/bootstrap-slider.min.js"></script>
+<script src="assets/js/gaem/gaem.admin.js"></script>
+<script src="assets/js/gaem/gaem.utilities.js"></script>
+<script src="assets/js/gaem/admin.load.js"></script>
 </body>
 </html>
