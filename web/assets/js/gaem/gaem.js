@@ -127,11 +127,33 @@ var Gaem = (function (module) {
         setTimeout(function (scope, index) {
             var $spinner_container = $('#spinner_' + id + ' ul');
             $spinner_container.css({left: ($spinner_container.position().left - movement)});
-            
+
+            // Click sounds
+            var clicks_played = 0;
+            var click_interval = setInterval(function () {
+                // Get current posision
+                var current_pos = Math.floor($spinner_container.position().left) * -1;
+
+                if (current_pos > 0) {
+                    // Calculate how many blocks we have moved
+                    var blocks_moved = Math.floor(current_pos / 130);
+
+                    // Check if we should play sound
+                    if (blocks_moved > clicks_played) {
+                        // Increase clicks played
+                        clicks_played++;
+
+                        // Play click sound
+                        var audio = new Audio('sounds/other/click.mp3');
+                        audio.play();
+                    }
+                }
+            }, 10);
+
             // Only do this once
             if (index == 0) {
                 // Play sound
-                setTimeout(function (scope) {
+                setTimeout(function (scope, click_interval) {
                     // Check if we should play sounds
                     if (scope.playSounds()) {
                         // Play random sound
@@ -139,9 +161,12 @@ var Gaem = (function (module) {
                         audio.play();
                     }
 
+                    // Unset interval for clicking sounds
+                    clearInterval(click_interval);
+
                     // Set timeout to start again (15 secs)
                     setTimeout(scope.restart, 15000);
-                }, 8000, scope);
+                }, 8000, scope, click_interval);
            }
         }, (1500 + 400), module, index);
     };
