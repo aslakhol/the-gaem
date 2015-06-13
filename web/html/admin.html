@@ -60,14 +60,34 @@
                 <input id="minmax" data-slider-id='minmax' type="text" data-slider-min="30" data-slider-max="600" data-slider-step="1" />
             </div>
         </div>
+        <div class="row no-border">
+            <div class="col-md-4 admin-checkbox-label">
+                <h2>Names</h2>
+            </div>
+            <div class="col-md-8">
+                <ul class="list-group" id="admin-names-list">
+                </ul>
+
+                <div id="name-container">
+                    <h3>Add new person</h3>
+                    <input type="text" class="form-control" placeholder="Enter name, submit with enter" id="name" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="assets/js/libs/jquery-2.1.4.min.js"></script>
+<script src="assets/js/libs/underscore.min.js"></script>
 <script src="assets/js/libs/bootstrap.min.js"></script>
 <script src="assets/js/libs/bootstrap-switch.min.js"></script>
 <script src="assets/js/libs/bootstrap-slider.min.js"></script>
 <script src="assets/js/gaem/gaem.admin.js"></script>
 <script src="assets/js/gaem/gaem.utilities.js"></script>
 <script src="assets/js/gaem/admin.load.js"></script>
+<script type="text/template" class="template-name">
+    <li class="list-group-item"><%- rc.name %>
+        <span class="glyphicon glyphicon-minus-sign admin-names-remove"></span>
+    </li>
+</script>
 </body>
 </html>

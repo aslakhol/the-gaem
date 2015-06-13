@@ -1,4 +1,7 @@
 <?php
+// Set content type
+header('Content-Type: application/json');
+
 // Store status
 $response = [
     'code' => 500

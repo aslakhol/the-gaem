@@ -8,7 +8,17 @@ h2 {
     font-size: 16px;
 }
 .row {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.row.no-border {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+#container {
+    height: auto;
 }
 
 /*
@@ -48,4 +58,15 @@ h2 {
 }
 .tooltip-inner {
     max-width: none;
+}
+
+/*
+ * Names
+ */
+.admin-names-remove {
+    color: red;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
 }

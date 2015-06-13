@@ -132,9 +132,13 @@ var Gaem = (function (module) {
             if (index == 0) {
                 // Play sound
                 setTimeout(function (scope) {
-                    //var audio = new Audio(scope.getAudio());
-                    //audio.play();
-                    
+                    // Check if we should play sounds
+                    if (scope.playSounds()) {
+                        // Play random sound
+                        var audio = new Audio(scope.getSounds());
+                        audio.play();
+                    }
+
                     // Set timeout to start again (15 secs)
                     setTimeout(scope.restart, 15000);
                 }, 8000, scope);
@@ -236,9 +240,16 @@ var Gaem = (function (module) {
     /*
      * Get auto
      */
-    module.getAudio = function () {
+    module.getSounds = function () {
         return sounds[Math.floor(Math.random() * sounds.length)]
     };
+
+    /*
+     * Check if we should play sounds
+     */
+    module.playSounds = function () {
+        return settings.sounds;
+    }
     
     /*
      * Return the module

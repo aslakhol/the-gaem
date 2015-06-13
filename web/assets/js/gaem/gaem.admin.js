@@ -67,6 +67,19 @@ var Gaem = (function (module) {
             tooltip: 'always'
         });
 
+        // Names
+        if (data.names.length > 0) {
+            for (var i = 0; i < data.names.length; i++) {
+                // Get template
+                var template = _.template(
+                    $( "script.template-name" ).html()
+                );
+
+                // Append name data to list
+                $('#admin-names-list').append(template({'name': data.names[i]}));
+            }
+        }
+
         // Fade out loader
         $('#loading').fadeOut(400, function () {
             $('#settings').delay(400).fadeIn(400);
@@ -124,6 +137,73 @@ var Gaem = (function (module) {
                 setSettings('min', event.value[0]);
             }
         });
+
+        // Add name
+        $('#name').on('keyup', function (e) {
+            if ($(this).val().length > 0 && e.keyCode == 13) {
+                nameAdd($(this).val());
+            }
+        });
+
+        // Rename name
+        $('#admin-names-list').on('click', '.admin-names-remove', nameRemove);
+    };
+
+    /*
+     * Add new name
+     */
+    var nameAdd = function(name) {
+        // Add name to settings
+        settings.names.push(name);
+
+        // Get template
+        var template = _.template(
+            $( "script.template-name" ).html()
+        );
+
+        // Append name data to list
+        $('#admin-names-list').append(template({'name': name}));
+
+        // Reset input field
+        $('#name').val('');
+
+        // Update settings file
+        $.ajax({
+            cache: false,
+            url: 'name',
+            type: 'post',
+            data: {
+                'method': 'add',
+                'name': name
+            }
+        });
+    };
+
+    /*
+     * Remove name
+     */
+    var nameRemove = function() {
+        // Find name
+        var name = $(this).parent().text().trim();
+
+        // Remove from settings array, using underscore because hax
+        settings.names = _.without(settings.names, name);
+
+        // Remove element
+        $(this).parent().slideUp(400, function () {
+            $(this).remove();
+        });
+
+        // Update settings file
+        $.ajax({
+            cache: false,
+            url: 'name',
+            type: 'post',
+            data: {
+                'method': 'remove',
+                'name': name
+            }
+        });
     };
 
     /*
@@ -131,6 +211,9 @@ var Gaem = (function (module) {
      */
     module.admin = {
         init: function () {
+            // Set underscore.js settings
+            _.templateSettings.variable = 'rc';
+
             // Load current settings
             loadSettings();
         }
