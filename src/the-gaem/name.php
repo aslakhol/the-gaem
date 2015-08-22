@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 
 // Settings file location
-$settings_file = dirname(dirname(dirname(__FILE__))) . '/settings/settings.json';
+$settings_file = dirname(dirname(dirname(__FILE__))) . '/storage/settings.json';
 
 // Initial response code
 $response['code'] = 500;

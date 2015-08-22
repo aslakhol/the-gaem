@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 // Array for settings
 $settings = [];
-$settings_file = dirname(dirname(dirname(__FILE__))) . '/settings/settings.json';
+$settings_file = dirname(dirname(dirname(__FILE__))) . '/storage/settings.json';
 
 // Check if settings file exists
 

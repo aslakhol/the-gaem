@@ -1,0 +1,16 @@
+# Turn RewriteEngine on
+RewriteEngine On
+
+# If the application is not running in the root directory of your webserver, specify the
+# base URI here. The URI should have a leading slash and no ending slash.
+RewriteBase /
+
+# Routing .php and .html requests to the handler
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI}  !(\.js|\.css|\.jpg|\.mp3|\.eot|\.svg|\.ttf|\.woff|\.woff2|\.eot|\.map)$
+RewriteRule ^(.*)$ src/index.php?q=$1 [L,QSA]
+
+# Routing all other requests to web/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ web/$1 [L,NS]

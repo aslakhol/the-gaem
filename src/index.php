@@ -1,6 +1,6 @@
 <?php
 // Get the correct request
-if (isset($_GET['q']) and strlen($_GET['q']) > 0) {
+if (isset($_GET['q'])) {
     // Apache / nginx
     $request = $_GET['q'];
 }
@@ -39,7 +39,7 @@ else {
     // Set headers
     header("Content-type: text/html");
 
-     // Clean ob and flush
+    // Clean ob and flush
     ob_clean();
     flush();
 

@@ -8,7 +8,7 @@ $response = [
 ];
 
 // Location of settings file
-$settings_file = dirname(dirname(dirname(__FILE__))) . '/settings/settings.json';
+$settings_file = dirname(dirname(dirname(__FILE__))) . '/storage/settings.json';
 
 // Check if we have everything we need
 if (isset($_POST['field']) and isset($_POST['value'])) {
