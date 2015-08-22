@@ -69,6 +69,9 @@ var Gaem = (function (module) {
         // Debug
         console.log('Starting...');
         
+        // Set counter to 0
+        counter = 0;
+        
         // Set state to true
         state = true;
         
@@ -146,7 +149,7 @@ var Gaem = (function (module) {
             var clicks_played = 0;
             var click_interval = setInterval(function () {
                 // Get current posision
-                var current_pos = (Math.floor($spinner_container.position().left) * -1) - 55;
+                var current_pos = (Math.floor($spinner_container.position().left) * -1) - 70;
 
                 if (current_pos > 0) {
                     // Calculate how many blocks we have moved
@@ -278,6 +281,14 @@ var Gaem = (function (module) {
      * Update settings
      */
     module.updateSettings = function (data) {
+        // Debug
+        if (typeof settings.state == 'undefined') {
+            console.log('Initial settings loaded');
+        }
+        else {
+            console.log('Settings reloaded');
+        }
+        
         // Store old settings
         settings_old = settings;
         
@@ -292,6 +303,9 @@ var Gaem = (function (module) {
      * Set sounds
      */
     module.setSounds = function(data) {
+        // Debug
+        console.log('Sounds loaded');
+        
         sounds = data;
     };
     
