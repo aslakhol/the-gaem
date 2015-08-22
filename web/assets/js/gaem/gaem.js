@@ -128,7 +128,7 @@ var Gaem = (function (module) {
             var $spinner_container = $('#spinner_' + id + ' ul');
             $spinner_container.css({left: ($spinner_container.position().left - movement)});
 
-            // Click sounds
+            // Scroll sounds
             var clicks_played = 0;
             var click_interval = setInterval(function () {
                 // Get current posision
@@ -143,8 +143,8 @@ var Gaem = (function (module) {
                         // Increase clicks played
                         clicks_played++;
 
-                        // Play click sound
-                        var audio = new Audio('sounds/other/click.mp3');
+                        // Play scroll sound
+                        var audio = new Audio('sounds/other/scroll.mp3');
                         audio.play();
                     }
                 }
