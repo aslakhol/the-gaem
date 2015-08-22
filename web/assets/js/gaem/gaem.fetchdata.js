@@ -20,6 +20,13 @@ var Gaem = (function (module) {
                 url: 'sounds',
                 success: Gaem.setSounds
             });
+            
+            // Fetch settings right away
+            $.ajax({
+                cache: false,
+                url: 'settings',
+                success: Gaem.updateSettings
+            });
         }
     };
     
