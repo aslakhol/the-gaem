@@ -37,8 +37,10 @@ var Gaem = (function (module) {
      * Generate spin value (time for spin)
      */
     var generateSpinValue = function () {
+        // Generate the spni value
         spin = Gaem.utilities.randomInt((settings.min * 1000), (settings.max * 1000));
         
+        // Debug
         console.log('Next spin @ ' + spin);
     }
     
@@ -46,6 +48,7 @@ var Gaem = (function (module) {
      * Stop the gaem
      */
     var stop = function () {
+        // Debug
         console.log('Stopping...');
         
         // Reset state
@@ -63,6 +66,7 @@ var Gaem = (function (module) {
      * Start the gaem
      */
     var start = function () {
+        // Debug
         console.log('Starting...');
         
         // Set state to true
@@ -75,6 +79,16 @@ var Gaem = (function (module) {
         gaemInterval = setInterval(function (scope) {
             // Increase counter
             counter += 20;
+            
+            // Debug
+            if ((counter % 1000) == 0) {
+                if (counter >= spin) {
+                    console.log('Current = ' + counter + ', next now');
+                }
+                else {
+                    console.log('Current = ' + counter + ', next in ' + (spin - counter));
+                }
+            }
             
             // Check if we should spin
             if (counter >= spin) {
@@ -132,7 +146,7 @@ var Gaem = (function (module) {
             var clicks_played = 0;
             var click_interval = setInterval(function () {
                 // Get current posision
-                var current_pos = Math.floor($spinner_container.position().left) * -1;
+                var current_pos = (Math.floor($spinner_container.position().left) * -1) - 55;
 
                 if (current_pos > 0) {
                     // Calculate how many blocks we have moved
@@ -199,22 +213,30 @@ var Gaem = (function (module) {
      * Spinner
      */
     module.spin = function () {
+        // Debug
         console.log('Spinning...');
         
         // Set blocked to true
         blocked = true;
         
+        // Set default number of spinners
         var spins = 1;
         
         // Check for triple
         if (Gaem.utilities.randomInt(0, 100) <= settings.triple) {
+            // Debug
             console.log('Triple spin!');
+            
+            // Set number of spinners
             spins = 3;
         }
         
         // Check for double
         if (spins == 1 && Gaem.utilities.randomInt(0, 100) <= settings.double) {
+            // Debug
             console.log('Double spin!');
+            
+            // Set number of spinners
             spins = 2;
         }
         
@@ -234,6 +256,7 @@ var Gaem = (function (module) {
      * Restart
      */
     module.restart = function () {
+        // Debug
         console.log('Restarting...');
         
         // Remove old spins
