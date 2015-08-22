@@ -13,4 +13,5 @@ RewriteRule ^(.*)$ src/index.php?q=$1 [L,QSA]
 # Routing all other requests to web/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ web/$1 [L,NS]
+RewriteCond %{REQUEST_URI} !/web
+RewriteRule ^(.*)$ web/$1 [L]
