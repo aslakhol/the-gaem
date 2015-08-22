@@ -31,6 +31,7 @@
     float: left;
     height: 150px;
     width: 140px;
+    transition: all 1s ease 0s;
 }
 .list-container {
     width: 110px;
@@ -58,6 +59,7 @@
     margin-left: -2px;
     top: 0px;
     z-index: 100;
+    transition: all 1s ease 0s;
 }
 .line-inner1 {
     height: 150px;

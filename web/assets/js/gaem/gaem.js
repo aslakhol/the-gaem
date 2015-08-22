@@ -149,7 +149,17 @@ var Gaem = (function (module) {
                     }
                 }
             }, 10);
-
+            
+            // Fade out all containers
+            setTimeout(function () {
+                $spinner_container.find('li').not(':eq(' + (num + 2) + ')').css({opacity: 0.25});
+            }, 8000);
+            
+            // Hide the line
+            setTimeout(function () {
+                 $('#spinner_' + id + ' .line').css({opacity: 0});
+            }, 8000);
+            
             // Only do this once
             if (index == 0) {
                 // Play sound
