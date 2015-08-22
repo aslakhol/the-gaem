@@ -22,6 +22,9 @@ var Gaem = (function (module) {
     var setInitialSettings = function (data) {
         // Set to variable
         settings = data;
+        if (settings.names == undefined) {
+            settings.names = [];
+        }
 
         // Checkboxes
         if (data.state) {
