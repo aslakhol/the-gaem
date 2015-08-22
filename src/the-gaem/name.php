@@ -5,6 +5,9 @@ header('Content-Type: application/json');
 // Settings file location
 $settings_file = dirname(dirname(dirname(__FILE__))) . '/settings/settings.json';
 
+// Initial response code
+$response['code'] = 500;
+
 // Check if we have everything we need
 if (isset($_POST['method']) and isset($_POST['name']) and ($_POST['method'] == 'add' or $_POST['method'] == 'remove')) {
     // Set response to 200
@@ -20,16 +23,16 @@ if (isset($_POST['method']) and isset($_POST['name']) and ($_POST['method'] == '
     }
     else {
         // Remove name
+        $new_names = [];
         for ($i = 0; $i < count($settings['names']); $i++) {
             // Check for name that matches name we want to remove
-            if ($settings['names'][$i] == $_POST['name']) {
-                // Remove from array
-                unset($settings['names'][$i]);
-
-                // Quit loop, we're done
-                break;
+            if ($settings['names'][$i] != $_POST['name']) {
+                $new_names[] = $settings['names'][$i];
             }
         }
+        
+        // Overwrite the previous name list
+        $settings['names'] = $new_names;
     }
 
     // Save settings
