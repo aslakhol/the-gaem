@@ -1,6 +1,9 @@
 # Ignore dat idea tho
 .idea
 
+# Ignore .htaccess file
+.htaccess
+
 # Hate u Mac
 .DS_Store
 
