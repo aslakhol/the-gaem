@@ -44,4 +44,9 @@ In your shell and the application is accessible at
 
 ### Setup with Apache
 
-Todo
+Copy `ht.access` in the application root and rename it to `.htaccess`. Open
+the file and edit the `RewriteBase` line if you are not running the application
+in the root directory of your web server.
+
+NOTE: I am getting some errors from Apache2 with the current config, however, everything
+is working like it should. If you have any idea why it is complaining, please tell me.
