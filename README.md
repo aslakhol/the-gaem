@@ -2,6 +2,8 @@
 
 The Gaem is a simple drinking scheduler written in JavaScript and PHP.
 
+![Gaem spinning](http://i57.tinypic.com/2zggr4x.jpg)
+
 ## How It Works
 
 The Gaem picks random times to give out drinks. Once this time has been reached
@@ -20,6 +22,8 @@ These settings includes:
 - Change for triple spin: Define change of three simultaneous spinners.
 - Names: Names for people that can be given a drink.
 - Play sounds: Whether or not to play sounds after each spinning is finished.
+
+![Gaem settings](http://i60.tinypic.com/33yltev.jpg)
 
 ## How to setup & run
 
