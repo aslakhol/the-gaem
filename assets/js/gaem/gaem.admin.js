@@ -1,36 +1,16 @@
 var Gaem = (function (module) {
 
     /*
-     * Private variables
-     */
-    var settings = {};
-
-    /*
-     * Load the settings
-     */
-    var loadSettings = function () {
-        $.ajax({
-            cache: false,
-            url: 'settings',
-            success: setInitialSettings
-        });
-    };
-
-    /*
      * Set the initial settings
      */
-    var setInitialSettings = function (data) {
-        // Set to variable
-        settings = data;
-        if (settings.names == undefined) {
-            settings.names = [];
-        }
+    var setInitialSettings = function () {
+        settings = Gaem.utilities.getSettings();
 
         // Checkboxes
-        if (data.state) {
+        if (settings.state) {
             $('#state').prop('checked', true);
         }
-        if (data.sounds) {
+        if (settings.sounds) {
             $('#sounds').prop('checked', true);
         }
 
@@ -42,14 +22,14 @@ var Gaem = (function (module) {
             formatter: function(val) {
                 return val + '%';
             },
-            value: data.double,
+            value: settings.double,
             tooltip: 'always'
         });
         $('#triple').slider({
             formatter: function(val) {
                 return val + '%';
             },
-            value: data.triple,
+            value: settings.triple,
             tooltip: 'always'
         });
 
@@ -64,50 +44,28 @@ var Gaem = (function (module) {
                 return val;
             },
             value: [
-                data.min,
-                data.max
+                settings.min,
+                settings.max
             ],
             tooltip: 'always'
         });
 
         // Names
-        if (data.names.length > 0) {
-            for (var i = 0; i < data.names.length; i++) {
+        if (settings.names.length > 0) {
+            for (var i = 0; i < settings.names.length; i++) {
                 // Get template
                 var template = _.template(
                     $( "script.template-name" ).html()
                 );
 
                 // Append name data to list
-                $('#admin-names-list').append(template({'name': data.names[i]}));
+                $('#admin-names-list').append(template({'name': settings.names[i]}));
             }
         }
 
         // Fade out loader
         $('#loading').fadeOut(400, function () {
             $('#settings').delay(400).fadeIn(400);
-        });
-
-        // Add listeners
-        addListeners();
-    };
-
-    /*
-     * Update settings
-     */
-    var setSettings = function (id, value) {
-        // Update settings data
-        settings[id] = value;
-
-        // Update settings file
-        $.ajax({
-            cache: false,
-            url: 'update',
-            type: 'post',
-            data: {
-                'field': id,
-                'value': value
-            }
         });
     };
 
@@ -117,15 +75,15 @@ var Gaem = (function (module) {
     var addListeners = function () {
         // Checkboxes
         $('#state,#sounds').on('switchChange.bootstrapSwitch', function (event, state) {
-            setSettings(this.id, state);
+            Gaem.utilities.setSettings(this.id, state);
         });
 
         // Double and triple
         $('#double').on('slideStop', function (event) {
-            setSettings(this.id, event.value);
+            Gaem.utilities.setSettings(this.id, event.value);
         });
         $('#triple').on('slideStop', function (event) {
-            setSettings(this.id, event.value);
+            Gaem.utilities.setSettings(this.id, event.value);
         });
 
         // Min / max
@@ -133,11 +91,11 @@ var Gaem = (function (module) {
             // Find out what was changed
             if (event.value[0] == settings.min) {
                 // Max was changed
-                setSettings('max', event.value[1]);
+                Gaem.utilities.setSettings('max', event.value[1]);
             }
             else {
                 // Min was changed
-                setSettings('min', event.value[0]);
+                Gaem.utilities.setSettings('min', event.value[0]);
             }
         });
 
@@ -156,8 +114,16 @@ var Gaem = (function (module) {
      * Add new name
      */
     var nameAdd = function(name) {
-        // Add name to settings
+        // Get the current settings
+        var settings = Gaem.utilities.getSettings();
+
+        console.log(settings);
+
+        // Add the new name
         settings.names.push(name);
+
+        // Store the new settings
+        Gaem.utilities.setSettings('names', settings.names);
 
         // Get template
         var template = _.template(
@@ -169,43 +135,27 @@ var Gaem = (function (module) {
 
         // Reset input field
         $('#name').val('');
-
-        // Update settings file
-        $.ajax({
-            cache: false,
-            url: 'name',
-            type: 'post',
-            data: {
-                'method': 'add',
-                'name': name
-            }
-        });
     };
 
     /*
      * Remove name
      */
     var nameRemove = function() {
+        // Get the current settings
+        var settings = Gaem.utilities.getSettings();
+
         // Find name
         var name = $(this).parent().text().trim();
 
         // Remove from settings array, using underscore because hax
         settings.names = _.without(settings.names, name);
 
+        // Store the updated settings
+        Gaem.utilities.setSettings('names', settings.names);
+
         // Remove element
         $(this).parent().slideUp(400, function () {
             $(this).remove();
-        });
-
-        // Update settings file
-        $.ajax({
-            cache: false,
-            url: 'name',
-            type: 'post',
-            data: {
-                'method': 'remove',
-                'name': name
-            }
         });
     };
 
@@ -218,7 +168,10 @@ var Gaem = (function (module) {
             _.templateSettings.variable = 'rc';
 
             // Load current settings
-            loadSettings();
+            setInitialSettings();
+
+            // Add listeners
+            addListeners();
         }
     };
 
