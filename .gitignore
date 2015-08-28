@@ -6,6 +6,3 @@
 
 # Hate u Mac
 .DS_Store
-
-# Ignore locale settings
-settings/settings.json
