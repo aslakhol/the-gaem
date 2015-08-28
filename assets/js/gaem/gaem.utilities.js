@@ -1,10 +1,10 @@
-var Gaem = (function (module) {
+var Gaem = (function(module) {
     
     /*
      * Public methods
      */
     module.utilities = {
-        randomInt: function (min, max) {
+        randomInt: function(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
         randomString: function () {
@@ -17,7 +17,7 @@ var Gaem = (function (module) {
             
             return text;
         },
-        secToPretty: function (val) {
+        secToPretty: function(val) {
             if (val < 60) {
                 return val + ' sec';
             }

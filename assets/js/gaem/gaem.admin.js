@@ -1,9 +1,9 @@
-var Gaem = (function (module) {
+var Gaem = (function(module) {
 
     /*
      * Set the initial settings
      */
-    var setInitialSettings = function () {
+    var setInitialSettings = function() {
         settings = Gaem.utilities.getSettings();
 
         // Checkboxes
@@ -64,7 +64,7 @@ var Gaem = (function (module) {
         }
 
         // Fade out loader
-        $('#loading').fadeOut(400, function () {
+        $('#loading').fadeOut(400, function() {
             $('#settings').delay(400).fadeIn(400);
         });
     };
@@ -72,22 +72,25 @@ var Gaem = (function (module) {
     /*
      * Add various listeners
      */
-    var addListeners = function () {
+    var addListeners = function() {
         // Checkboxes
-        $('#state,#sounds').on('switchChange.bootstrapSwitch', function (event, state) {
+        $('#state,#sounds').on('switchChange.bootstrapSwitch', function(event, state) {
             Gaem.utilities.setSettings(this.id, state);
         });
 
         // Double and triple
-        $('#double').on('slideStop', function (event) {
+        $('#double').on('slideStop', function(event) {
             Gaem.utilities.setSettings(this.id, event.value);
         });
-        $('#triple').on('slideStop', function (event) {
+        $('#triple').on('slideStop', function(event) {
             Gaem.utilities.setSettings(this.id, event.value);
         });
 
         // Min / max
-        $('#minmax').on('slideStop', function (event) {
+        $('#minmax').on('slideStop', function(event) {
+            // Get the current settings
+            var settings = Gaem.utilities.getSettings();
+            
             // Find out what was changed
             if (event.value[0] == settings.min) {
                 // Max was changed
@@ -100,7 +103,7 @@ var Gaem = (function (module) {
         });
 
         // Add name
-        $('#name').on('keyup', function (e) {
+        $('#name').on('keyup', function(e) {
             if ($(this).val().length > 0 && e.keyCode == 13) {
                 nameAdd($(this).val());
             }
@@ -154,7 +157,7 @@ var Gaem = (function (module) {
         Gaem.utilities.setSettings('names', settings.names);
 
         // Remove element
-        $(this).parent().slideUp(400, function () {
+        $(this).parent().slideUp(400, function() {
             $(this).remove();
         });
     };
@@ -163,7 +166,7 @@ var Gaem = (function (module) {
      * Public methods
      */
     module.admin = {
-        init: function () {
+        init: function() {
             // Set underscore.js settings
             _.templateSettings.variable = 'rc';
 

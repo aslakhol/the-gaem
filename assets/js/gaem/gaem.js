@@ -1,24 +1,27 @@
-var Gaem = (function (module) {
+var Gaem = (function(module) {
     
     /*
      * Private variables
      */
-    var settings_old = {}; // The old settings
     var settings = {}; // The current settings
-    var sounds = []; // List of sounds
-    
+    var settings_old = {}; // The old settings
     var state = false; // False = game is not running, true = fame is running
     var blocked = false; // False = don't start a new game if state changes, true = start a new game right away
     var counter = 0; // The current counter
     var spin = 0; // The value we are waiting for the counter to reach
     var gaemInterval = null; // Holds the interval that updates the counter
+
+    var sounds = [
+        'sounds/airhorn.mp3'
+    ];
     
     /*
      * Analyze settings
      */
-    var analyzeSettings = function () {
+    var analyzeSettings = function() {
+
         // Check if we should start or stop
-        if (blocked == false && settings.state == true && state == false) {
+        if (blocked == false && settings.state == true && state == false && settings.names.length > 0) {
             // Start
             start();
         }
@@ -36,18 +39,18 @@ var Gaem = (function (module) {
     /*
      * Generate spin value (time for spin)
      */
-    var generateSpinValue = function () {
+    var generateSpinValue = function() {
         // Generate the spni value
         spin = Gaem.utilities.randomInt((settings.min * 1000), (settings.max * 1000));
         
         // Debug
         console.log('Next spin @ ' + spin);
-    }
+    };
     
     /*
      * Stop the gaem
      */
-    var stop = function () {
+    var stop = function() {
         // Debug
         console.log('Stopping...');
         
@@ -65,7 +68,7 @@ var Gaem = (function (module) {
     /*
      * Start the gaem
      */
-    var start = function () {
+    var start = function() {
         // Debug
         console.log('Starting...');
         
@@ -107,9 +110,9 @@ var Gaem = (function (module) {
     /*
      * Generate template
      */
-    var generateTemplate = function (id, num, index) {
+    var generateTemplate = function(id, num, index) {
         var names = [];
-        
+
         // Create array of objects with random names
         for (var i = 0; i <= (num + 10); i++) {
             names.push({name: settings.names[Math.floor(Math.random() * settings.names.length)]});
@@ -141,13 +144,13 @@ var Gaem = (function (module) {
         $('#spinner_' + id).fadeIn(400);
         
         // Apply the effect
-        setTimeout(function (scope, index) {
+        setTimeout(function(scope, index) {
             var $spinner_container = $('#spinner_' + id + ' ul');
             $spinner_container.css({left: ($spinner_container.position().left - movement)});
 
             // Scroll sounds
             var clicks_played = 0;
-            var click_interval = setInterval(function () {
+            var click_interval = setInterval(function() {
                 // Get current posision
                 var current_pos = (Math.floor($spinner_container.position().left) * -1) - 70;
 
@@ -168,19 +171,19 @@ var Gaem = (function (module) {
             }, 10);
             
             // Fade out all containers
-            setTimeout(function () {
+            setTimeout(function() {
                 $spinner_container.find('li').not(':eq(' + (num + 2) + ')').css({opacity: 0.25});
             }, 8000);
             
             // Hide the line
-            setTimeout(function () {
+            setTimeout(function() {
                  $('#spinner_' + id + ' .line').css({opacity: 0});
             }, 8000);
             
             // Only do this once
             if (index == 0) {
                 // Play sound
-                setTimeout(function (scope, click_interval) {
+                setTimeout(function(scope, click_interval) {
                     // Check if we should play sounds
                     if (scope.playSounds()) {
                         // Play random sound
@@ -197,25 +200,52 @@ var Gaem = (function (module) {
            }
         }, (1500 + 400), module, index);
     };
+
+    /*
+     * Update settings
+     */
+    module.updateSettings = function(data) {
+        // Debug
+        if (typeof settings_old.state == 'undefined') {
+            console.log('Initial settings loaded');
+        }
+        else {
+            console.log('Settings reloaded');
+        }
+
+        // Store old settings
+        settings_old = settings;
+
+        // Store settings
+        settings = data;
+
+        // Analyze settings
+        analyzeSettings();
+    };
     
     /*
      * Init function
      */
-    module.init = function () {
+    module.init = function() {
         // Debug
         console.log('Init...');
         
         // Set underscore.js settings
         _.templateSettings.variable = 'rc';
         
-        // Start fetching
-        Gaem.fetchData.init();
+        // Update settings
+        module.updateSettings(Gaem.utilities.getSettings());
+
+        // Update every 15 seconds
+        setInterval(function() {
+            module.updateSettings(Gaem.utilities.getSettings());
+        }, 15000);
     };
     
     /*
      * Spinner
      */
-    module.spin = function () {
+    module.spin = function() {
         // Debug
         console.log('Spinning...');
         
@@ -258,12 +288,12 @@ var Gaem = (function (module) {
     /*
      * Restart
      */
-    module.restart = function () {
+    module.restart = function() {
         // Debug
         console.log('Restarting...');
         
         // Remove old spins
-        $('#container > div').fadeOut(400, function () {
+        $('#container > div').fadeOut(400, function() {
             $(this).remove();
         });
         
@@ -278,50 +308,18 @@ var Gaem = (function (module) {
     };
     
     /*
-     * Update settings
-     */
-    module.updateSettings = function (data) {
-        // Debug
-        if (typeof settings.state == 'undefined') {
-            console.log('Initial settings loaded');
-        }
-        else {
-            console.log('Settings reloaded');
-        }
-        
-        // Store old settings
-        settings_old = settings;
-        
-        // Store settings
-        settings = data;
-        
-        // Analyze settings
-        analyzeSettings();
-    };
-    
-    /*
-     * Set sounds
-     */
-    module.setSounds = function(data) {
-        // Debug
-        console.log('Sounds loaded');
-        
-        sounds = data;
-    };
-    
-    /*
      * Get auto
      */
-    module.getSounds = function () {
+    module.getSounds = function() {
         return sounds[Math.floor(Math.random() * sounds.length)]
     };
 
     /*
      * Check if we should play sounds
      */
-    module.playSounds = function () {
+    module.playSounds = function() {
         return settings.sounds;
-    }
+    };
     
     /*
      * Return the module
