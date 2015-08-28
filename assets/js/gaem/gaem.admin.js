@@ -90,7 +90,7 @@ var Gaem = (function(module) {
         $('#minmax').on('slideStop', function(event) {
             // Get the current settings
             var settings = Gaem.utilities.getSettings();
-            
+
             // Find out what was changed
             if (event.value[0] == settings.min) {
                 // Max was changed
